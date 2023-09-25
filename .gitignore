@@ -2,3 +2,7 @@ data
 exp
 mfcc
 resources
+*.wav
+gopt_feats
+tmp
+__pycache__

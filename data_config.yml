@@ -1,0 +1,18 @@
+root_dir: /working
+max_length: 50
+
+gop_path: /working/egs/gop_speechocean762/s5
+metadata_path: "data/processed_data/metadata.csv"
+wav_dir: "/wav_dir"
+data_dir: "data/processed_data/train"
+
+phoneme_dict_path: "resources/phoneme_dict.json"
+text_phoneme_path: "data/processed_data/text-phone"
+phone2sym_path: "egs/gop_speechocean762/s5/data/lang_nosp/phones-pure.txt"
+feat_path: "/working/egs/gop_speechocean762/s5/exp/gop_train/feat.scp"
+
+tmp_feat_path: "tmp/raw_kaldi_gop/tr_feats.csv"
+tmp_key_path: "tmp/raw_kaldi_gop/tr_keys.csv"
+tmp_label_path: "tmp/raw_kaldi_gop/tr_labels.csv"
+
+out_dir: "tmp/prep/"

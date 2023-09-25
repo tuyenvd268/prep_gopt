@@ -47,13 +47,14 @@ done
 if [ $stage -le 1 ]; then
 #   # Download data and untar
 #   local/download_and_untar.sh $data_url $data
-    cp -r ../../../data/processed_data/train data/
-    cp -r ../../../data/processed_data/test data/
+    rm -r $data/*
+    cp -r ../../../data/processed_data/train $data/
+    # cp -r ../../../data/processed_data/test $data/
 fi
 
 if [ $stage -le 2 ]; then
 #   # Prepare data
-#   # for part in train test; do
+#   # for part in train; do
 #   #   local/data_prep.sh $data/speechocean762/$part data/$part
 #   # done
 
@@ -65,7 +66,7 @@ fi
 
 if [ $stage -le 3 ]; then
   # Create high-resolution MFCC features
-  for part in train test; do
+  for part in train; do
     steps/make_mfcc.sh --nj $nj --mfcc-config conf/mfcc_hires.conf \
       --cmd "$cmd" data/$part || exit 1;
     steps/compute_cmvn_stats.sh data/$part || exit 1;
@@ -75,7 +76,7 @@ fi
 
 if [ $stage -le 4 ]; then
   # Extract ivector
-  for part in train test; do
+  for part in train; do
     steps/online/nnet2/extract_ivectors_online.sh --cmd "$cmd" --nj $nj \
       data/$part $ivector_extractor data/$part/ivectors || exit 1;
   done
@@ -83,7 +84,7 @@ fi
 
 if [ $stage -le 5 ]; then
   # Compute Log-likelihoods
-  for part in train test; do
+  for part in train; do
     steps/nnet3/compute_output.sh --cmd "$cmd" --nj $nj \
       --online-ivector-dir data/$part/ivectors data/$part $model exp/probs_$part
   done
@@ -100,7 +101,7 @@ fi
 if [ $stage -le 7 ]; then
   # Split data and make phone-level transcripts
   cp -r ../../../data/processed_data/text-phone  data/local/text-phone
-  for part in train test; do
+  for part in train; do
     utils/split_data.sh data/$part $nj
     for i in `seq 1 $nj`; do
       utils/sym2int.pl -f 2- data/lang_nosp/words.txt \
@@ -115,7 +116,7 @@ fi
 
 if [ $stage -le 8 ]; then
   # Make align graphs
-  for part in train test; do
+  for part in train; do
     $cmd JOB=1:$nj exp/ali_$part/log/mk_align_graph.JOB.log \
       compile-train-graphs-without-lexicon \
         --read-disambig-syms=data/lang_nosp/phones/disambig.int \
@@ -129,7 +130,7 @@ fi
 
 if [ $stage -le 9 ]; then
   # Align
-  for part in train test; do
+  for part in train; do
     steps/align_mapped.sh --cmd "$cmd" --nj $nj --graphs exp/ali_$part \
       data/$part exp/probs_$part $lang $model exp/ali_$part
   done
@@ -145,7 +146,7 @@ fi
 
 if [ $stage -le 11 ]; then
   # Convert transition-id to phone-id
-  for part in train test; do
+  for part in train; do
     $cmd JOB=1:$nj exp/ali_$part/log/ali_to_phones.JOB.log \
       ali-to-phones --per-frame=true $model/final.mdl \
         "ark,t:gunzip -c exp/ali_$part/ali.JOB.gz|" \
@@ -174,7 +175,7 @@ if [ $stage -le 12 ]; then
   # The column number is 2 * (pure-phone set size), as the feature is consist of LLR + LPR.
   # The gop-base features can be used to train a classifier with human labels. See Hu's
   # paper for detail.
-  for part in train test; do
+  for part in train; do
     $cmd JOB=1:$nj exp/gop_$part/log/compute_gop.JOB.log \
       compute-gop --phone-map=data/lang_nosp/phone-to-pure-phone.int \
         --skip-phones-string=0:1:2 \

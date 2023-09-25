@@ -1,0 +1,5 @@
+streamlit
+flask
+soundfile
+tqdm
+omegaconf

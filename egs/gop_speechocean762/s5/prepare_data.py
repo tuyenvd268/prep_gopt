@@ -35,7 +35,7 @@ print("PREPARE DATA FOR KALDI: ", utterance)
 user_id = "0000"
 # utterance =  "THE PAPER PUBLISHED NO DETAILS AND THERE WAS NO ATTACK"
 # wav_path = "/working/egs/gop_speechocean762/s5/data/speechocean762/WAVE/SPEAKER1030/010300105.WAV"
-lexicon_path = "/working/librispeech-lexicon.txt"
+lexicon_path = "/working/resources/lexicon.txt"
 lexicon_dict_l = load_lexicon(lexicon_path)
 
 sample = {
@@ -60,7 +60,7 @@ text_str = ""
 text_phone_str = ""
 
 for index in dataset.index:
-    wav_id = os.path.basename(dataset["wav_path"][index]).rstrip(".WAV")
+    wav_id = os.path.basename(dataset["wav_path"][index]).rstrip(".WAV").rstrip(".wav")
     
     _scp_str = f'{wav_id}\t{dataset["wav_path"][index]}\n'
     _text_str = f'{wav_id}\t{dataset["utterance"][index]}\n'

@@ -29,23 +29,13 @@ def get_args():
 
 def main(args, set):
     args.feature_scp = 'exp/gop_infer/feat.scp'
-
-    # Phone symbol table
     _, phone_int2sym = load_phone_symbol_table(args.phone_symbol_table)
-
-    # Human expert scores
-    score_of, phone_of = load_human_scores(args.human_scoring_json, floor=args.floor)
-
-    # Gather the features
     lables = []
     keys = []
     features = []
     cnt = 0
     for key, feat in kaldi_io.read_vec_flt_scp(args.feature_scp):
         cnt += 1
-        if key not in score_of:
-            print(f'Warning: no human score for {key}')
-            # continue
         ph = int(feat[0])
         if ph in range(args.min_phone_idx, args.max_phone_idx + 1):
             if phone_int2sym is not None and ph in phone_int2sym:
@@ -55,16 +45,15 @@ def main(args, set):
             lables.append([ph])
 
     print('now processing {:s} set with floor {:f}, load {:d} samples'.format(set, args.floor, cnt))
-
     if os.path.exists('gopt_feats') == False:
         os.mkdir('gopt_feats')
 
     np.savetxt('gopt_feats/if_feats.csv', features, delimiter=',')
     print("saved to gopt_feats/if_feats.csv", )
-    np.savetxt('gopt_feats/if_keys_phn.csv', keys, delimiter=',', fmt='%s')
-    print("saved to gopt_feats/if_keys_phn.csv", )
-    np.savetxt('gopt_feats/if_labels_phn.csv', lables, delimiter=',', fmt='%s')
-    print("saved to gopt_feats/if_labels_phn.csv", )
+    np.savetxt('gopt_feats/if_keys.csv', keys, delimiter=',', fmt='%s')
+    print("saved to gopt_feats/if_keys.csv", )
+    np.savetxt('gopt_feats/if_labels.csv', lables, delimiter=',', fmt='%s')
+    print("saved to gopt_feats/if_labels.csv", )
 
 if __name__ == '__main__':
     args = get_args()

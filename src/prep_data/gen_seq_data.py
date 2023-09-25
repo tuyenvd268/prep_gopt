@@ -9,6 +9,7 @@
 
 import numpy as np
 import json
+import os
 from argparse import ArgumentParser
 
 def load_feat(path):
@@ -82,6 +83,30 @@ def gen_phn_dict(label):
             phn_idx += 1
     return phn_dict
 
+def generate_sequence_data_for_score_model(config, feat_path, label_path):
+    tr_feat = load_feat(config.tmp_feat_path)
+    tr_keys = load_keys(config.tmp_key_path)
+    tr_label = load_label(config.tmp_label_path)
+
+    assert os.path.exists(config.phoneme_dict_path)
+
+    if not os.path.exists(config.phoneme_dict_path):
+        phn_dict = gen_phn_dict(tr_label)
+        with open(config.phoneme_dict_path, "w", encoding="utf-8") as f:
+            json_obj = json.dumps(phn_dict, indent=4, ensure_ascii=False)
+            f.write(json_obj)
+        print(config.phoneme_dict_path)
+    else:
+        phn_dict = json.load(open(config.phoneme_dict_path, "r"))
+
+    tr_feat, tr_label = process_feat_seq(tr_feat, tr_keys, tr_label, phn_dict, max_length=config.max_length)
+
+    np.save(feat_path, tr_feat)
+    print(f'saved feature to {feat_path}')
+    np.save(label_path, tr_label)
+    print(f'saved label to {label_path}')
+
+
 if __name__ == "__main__":
     parser = ArgumentParser()
     parser.add_argument("--max_length", default=50, type=int)
@@ -95,21 +120,22 @@ if __name__ == "__main__":
     tr_keys = load_keys('../../data/raw_kaldi_gop/gopt_feats/tr_keys.csv')
     tr_label = load_label('../../data/raw_kaldi_gop/gopt_feats/tr_labels.csv')
     phn_dict = gen_phn_dict(tr_label)
-    print("Phoneme Dict: ", phn_dict)
+    # print("Phoneme Dict: ", phn_dict)
 
-    with open("../../resources/phoneme_dict.json", "w", encoding="utf-8") as f:
-        json_obj = json.dumps(phn_dict, indent=4, ensure_ascii=False)
-        f.write(json_obj)
-    print("saved: resources/phoneme_dict.json")
+    if not os.path.exists("../../resources/phoneme_dict.json"):
+        with open("../../resources/phoneme_dict.json", "w", encoding="utf-8") as f:
+            json_obj = json.dumps(phn_dict, indent=4, ensure_ascii=False)
+            f.write(json_obj)
+        print("saved: resources/phoneme_dict.json")
 
     tr_feat, tr_label = process_feat_seq(tr_feat, tr_keys, tr_label, phn_dict, max_length=args.max_length)
-    print("Train feature shape: ", tr_feat.shape)
-    print("Train label shape: ", tr_label.shape)
+    # print("Train feature shape: ", tr_feat.shape)
+    # print("Train label shape: ", tr_label.shape)
 
-    np.save('../../data/seq_data_librispeech/tr_feat.npy', tr_feat)
-    print("Saved train feature to data/seq_data_librispeech/tr_feat.npy")
-    np.save('../../data/seq_data_librispeech/tr_label.npy', tr_label)
-    print("Saved train label to data/seq_data_librispeech/tr_label.npy")
+    np.save('../../data/seq_data_elsa/tr_feat.npy', tr_feat)
+    # print("Saved train feature to data/seq_data_librispeech/tr_feat.npy")
+    np.save('../../data/seq_data_elsa/tr_label.npy', tr_label)
+    # print("Saved train label to data/seq_data_librispeech/tr_label.npy")
 
     # generate sequence test data
     te_feat = load_feat('../../data/raw_kaldi_gop/gopt_feats/te_feats.csv')
@@ -117,10 +143,10 @@ if __name__ == "__main__":
     te_label = load_label('../../data/raw_kaldi_gop/gopt_feats/te_labels.csv')
     te_feat, te_label = process_feat_seq(te_feat, te_keys, te_label, phn_dict, max_length=args.max_length)
 
-    print("Test feature shape: ", te_feat.shape)
-    print("Test label shape: ", te_label.shape)
+    # print("Test feature shape: ", te_feat.shape)
+    # print("Test label shape: ", te_label.shape)
 
-    np.save('../../data/seq_data_librispeech/te_feat.npy', te_feat)
-    print("Saved test feature to data/seq_data_librispeech/te_feat.npy")
-    np.save('../../data/seq_data_librispeech/te_label.npy', te_label)
-    print("Saved test label to data/seq_data_librispeech/te_label.npy")
+    np.save('../../data/seq_data_elsa/te_feat.npy', te_feat)
+    # print("Saved test feature to data/seq_data_librispeech/te_feat.npy")
+    np.save('../../data/seq_data_elsa/te_label.npy', te_label)
+    # print("Saved test label to data/seq_data_librispeech/te_label.npy")

@@ -1,0 +1,9 @@
+
+score_model_ckpt: "exp/models/best_audio_model.pth"
+lexicon_path: "resources/lexicon.txt"
+scaler_path: "resources/scaler.pkl"
+
+tmp_wav_path: 
+tmp_feat_path: data/seq_data_librispeech/if_feat.npy
+tmp_phn_path: data/seq_data_librispeech/if_label.npy
+tmp_text_phone_path: "egs/gop_speechocean762/s5/data/local/text-phone"

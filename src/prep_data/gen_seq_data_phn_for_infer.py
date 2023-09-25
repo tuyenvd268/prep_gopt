@@ -8,6 +8,7 @@
 # Generate sequence phone input and label for seq2seq models from raw Kaldi GOP features.
 
 import numpy as np
+import json
 
 def load_feat(path):
     file = np.loadtxt(path, delimiter=',')
@@ -58,8 +59,6 @@ def process_feat_seq(feat, keys, labels, phn_dict):
         # The first element is the phone label.
         seq_feat[row, cur_tok_id, :] = feat[i, 1:]
 
-        # [utt, seq_len, 0] is the phone label
-        print(labels)
         seq_label[row, cur_tok_id, 0] = phn_dict[labels[i]]
         # [utt, seq_len, 1] is the score label, range from 0-2
         # seq_label[row, cur_tok_id, 1] = labels[i, 1]
@@ -75,26 +74,15 @@ def gen_phn_dict(label):
             phn_idx += 1
     return phn_dict
 
-# generate sequence training data
-# tr_feat = load_feat('../../data/raw_kaldi_gop/test_dataset/tr_feats.csv')
-# tr_keys = load_keys('../../data/raw_kaldi_gop/test_dataset/tr_keys_phn.csv')
-tr_label = load_label('../../data/raw_kaldi_gop/librispeech/tr_labels_phn.csv')
-phn_dict = gen_phn_dict(tr_label)
-print(phn_dict)
-# tr_feat, tr_label = process_feat_seq(tr_feat, tr_keys, tr_label, phn_dict)
-# print(tr_feat.shape)
-# print(tr_label.shape)
-# np.save('../../data/seq_data_test_dataset/tr_feat.npy', tr_feat)
-# np.save('../../data/seq_data_test_dataset/tr_label_phn.npy', tr_label)
+with open("../../resources/phoneme_dict.json", "r") as f:
+    phn_dict = json.load(f)
 
-# generate sequence test data
 te_feat = load_feat('../../data/raw_kaldi_gop/librispeech/if_feats.csv')
-te_keys = load_keys('../../data/raw_kaldi_gop/librispeech/if_keys_phn.csv')
-te_label = load_label('../../data/raw_kaldi_gop/librispeech/if_labels_phn.csv')
+te_keys = load_keys('../../data/raw_kaldi_gop/librispeech/if_keys.csv')
+te_label = load_label('../../data/raw_kaldi_gop/librispeech/if_labels.csv')
 te_feat, te_label = process_feat_seq(te_feat, te_keys, te_label, phn_dict)
+
 print(te_feat.shape)
 print(te_label.shape)
 np.save('../../data/seq_data_librispeech/if_feat.npy', te_feat)
-np.save('../../data/seq_data_librispeech/if_label_phn.npy', te_label)
-
-print("saved to ../../data/seq_data_librispeech/if_feat.npy")
+np.save('../../data/seq_data_librispeech/if_label.npy', te_label)

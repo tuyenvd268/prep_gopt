@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-# audio_path="/working/egs/gop_speechocean762/s5/data/speechocean762/WAVE/SPEAKER1030/010300105.WAV"
-# text="THE PAPER PUBLISHED NO DETAILS AND THERE WAS NO ATTACK"
+# path="/working/data/processed_data/wavs/5580004.wav"
+# text="SCHOOL"
 path=$1
 text=$2
 
@@ -27,16 +27,6 @@ lang=$librispeech_eg/data/lang
 for d in $model $ivector_extractor $lang; do
     [ ! -d $d ] && echo "$0: no such path $d" && exit 1;
 done
-
-# if [ $stage -le 2 ]; then
-#   # Prepare data
-#   for part in temp; do
-#     local/data_prep.sh $data/speechocean762/$part data/$part
-#   done
-
-#   mkdir -p data/local
-#   cp $data/speechocean762/resource/* data/local
-# fi
 
 if [ $stage -le 3 ]; then
   # Create high-resolution MFCC features

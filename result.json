@@ -1,0 +1,323 @@
+{
+    "version": "None",
+    "utterance": {
+        "text": "HE WILL BE MAKING A NEW SCULPTURE FOR THE EXHIBITION",
+        "arpabet": null,
+        "score": 58.63632583618164,
+        "duration": 0.0,
+        "phonemes": [
+            {
+                "text": "HE",
+                "arpabet": null,
+                "start_time": 0.4,
+                "end_time": 0.62,
+                "score": 51.910552978515625,
+                "phonemes": [
+                    {
+                        "arpabet": "HH",
+                        "start_time": 0.4,
+                        "end_time": 0.5,
+                        "score": 41.392581939697266
+                    },
+                    {
+                        "arpabet": "IY",
+                        "start_time": 0.5,
+                        "end_time": 0.62,
+                        "score": 62.42852783203125
+                    }
+                ]
+            },
+            {
+                "text": "WILL",
+                "arpabet": null,
+                "start_time": 0.62,
+                "end_time": 1.02,
+                "score": 81.83319854736328,
+                "phonemes": [
+                    {
+                        "arpabet": "W",
+                        "start_time": 0.62,
+                        "end_time": 0.76,
+                        "score": 78.36209106445312
+                    },
+                    {
+                        "arpabet": "IH",
+                        "start_time": 0.76,
+                        "end_time": 0.88,
+                        "score": 73.73680114746094
+                    },
+                    {
+                        "arpabet": "L",
+                        "start_time": 0.88,
+                        "end_time": 1.02,
+                        "score": 93.40069580078125
+                    }
+                ]
+            },
+            {
+                "text": "BE",
+                "arpabet": null,
+                "start_time": 1.02,
+                "end_time": 1.29,
+                "score": 89.90438842773438,
+                "phonemes": [
+                    {
+                        "arpabet": "B",
+                        "start_time": 1.02,
+                        "end_time": 1.12,
+                        "score": 94.56197357177734
+                    },
+                    {
+                        "arpabet": "IY",
+                        "start_time": 1.12,
+                        "end_time": 1.29,
+                        "score": 85.24681091308594
+                    }
+                ]
+            },
+            {
+                "text": "MAKING",
+                "arpabet": null,
+                "start_time": 1.29,
+                "end_time": 1.76,
+                "score": 86.6607666015625,
+                "phonemes": [
+                    {
+                        "arpabet": "M",
+                        "start_time": 1.29,
+                        "end_time": 1.3900000000000001,
+                        "score": 97.92049407958984
+                    },
+                    {
+                        "arpabet": "EY",
+                        "start_time": 1.39,
+                        "end_time": 1.5099999999999998,
+                        "score": 93.84186553955078
+                    },
+                    {
+                        "arpabet": "K",
+                        "start_time": 1.51,
+                        "end_time": 1.6,
+                        "score": 102.58956909179688
+                    },
+                    {
+                        "arpabet": "IH",
+                        "start_time": 1.6,
+                        "end_time": 1.6700000000000002,
+                        "score": 91.65290069580078
+                    },
+                    {
+                        "arpabet": "NG",
+                        "start_time": 1.67,
+                        "end_time": 1.76,
+                        "score": 47.29898452758789
+                    }
+                ]
+            },
+            {
+                "text": "A",
+                "arpabet": null,
+                "start_time": 1.76,
+                "end_time": 1.85,
+                "score": 58.77779006958008,
+                "phonemes": [
+                    {
+                        "arpabet": "EY",
+                        "start_time": 1.76,
+                        "end_time": 1.85,
+                        "score": 58.77779006958008
+                    }
+                ]
+            },
+            {
+                "text": "NEW",
+                "arpabet": null,
+                "start_time": 1.85,
+                "end_time": 2.1,
+                "score": 91.0840835571289,
+                "phonemes": [
+                    {
+                        "arpabet": "N",
+                        "start_time": 1.85,
+                        "end_time": 1.9100000000000001,
+                        "score": 99.71401977539062
+                    },
+                    {
+                        "arpabet": "Y",
+                        "start_time": 1.91,
+                        "end_time": 1.99,
+                        "score": 86.23563385009766
+                    },
+                    {
+                        "arpabet": "UW",
+                        "start_time": 1.99,
+                        "end_time": 2.1,
+                        "score": 87.30258178710938
+                    }
+                ]
+            },
+            {
+                "text": "SCULPTURE",
+                "arpabet": null,
+                "start_time": 2.1,
+                "end_time": 2.71,
+                "score": 86.27362060546875,
+                "phonemes": [
+                    {
+                        "arpabet": "S",
+                        "start_time": 2.1,
+                        "end_time": 2.19,
+                        "score": 101.25971984863281
+                    },
+                    {
+                        "arpabet": "K",
+                        "start_time": 2.19,
+                        "end_time": 2.28,
+                        "score": 95.961669921875
+                    },
+                    {
+                        "arpabet": "AH",
+                        "start_time": 2.28,
+                        "end_time": 2.3499999999999996,
+                        "score": 90.66482543945312
+                    },
+                    {
+                        "arpabet": "L",
+                        "start_time": 2.35,
+                        "end_time": 2.36,
+                        "score": 39.22283172607422
+                    },
+                    {
+                        "arpabet": "P",
+                        "start_time": 2.36,
+                        "end_time": 2.4099999999999997,
+                        "score": 91.54778289794922
+                    },
+                    {
+                        "arpabet": "CH",
+                        "start_time": 2.41,
+                        "end_time": 2.54,
+                        "score": 93.42344665527344
+                    },
+                    {
+                        "arpabet": "ER",
+                        "start_time": 2.54,
+                        "end_time": 2.71,
+                        "score": 91.8350601196289
+                    }
+                ]
+            },
+            {
+                "text": "FOR",
+                "arpabet": null,
+                "start_time": 2.71,
+                "end_time": 2.9099999999999997,
+                "score": 77.52267456054688,
+                "phonemes": [
+                    {
+                        "arpabet": "F",
+                        "start_time": 2.71,
+                        "end_time": 2.82,
+                        "score": 97.70269775390625
+                    },
+                    {
+                        "arpabet": "R",
+                        "start_time": 2.82,
+                        "end_time": 2.88,
+                        "score": 64.72338104248047
+                    },
+                    {
+                        "arpabet": "ER",
+                        "start_time": 2.88,
+                        "end_time": 2.9099999999999997,
+                        "score": 70.1419448852539
+                    }
+                ]
+            },
+            {
+                "text": "THE",
+                "arpabet": null,
+                "start_time": 2.91,
+                "end_time": 3.08,
+                "score": 70.4345474243164,
+                "phonemes": [
+                    {
+                        "arpabet": "DH",
+                        "start_time": 2.91,
+                        "end_time": 3.0,
+                        "score": 79.40719604492188
+                    },
+                    {
+                        "arpabet": "IY",
+                        "start_time": 3.0,
+                        "end_time": 3.08,
+                        "score": 61.46189498901367
+                    }
+                ]
+            },
+            {
+                "text": "EXHIBITION",
+                "arpabet": null,
+                "start_time": 3.09,
+                "end_time": 3.93,
+                "score": 86.07762145996094,
+                "phonemes": [
+                    {
+                        "arpabet": "EH",
+                        "start_time": 3.09,
+                        "end_time": 3.1399999999999997,
+                        "score": 94.49500274658203
+                    },
+                    {
+                        "arpabet": "K",
+                        "start_time": 3.14,
+                        "end_time": 3.22,
+                        "score": 91.73771667480469
+                    },
+                    {
+                        "arpabet": "S",
+                        "start_time": 3.22,
+                        "end_time": 3.25,
+                        "score": 86.09367370605469
+                    },
+                    {
+                        "arpabet": "AH",
+                        "start_time": 3.25,
+                        "end_time": 3.28,
+                        "score": 62.67588806152344
+                    },
+                    {
+                        "arpabet": "B",
+                        "start_time": 3.28,
+                        "end_time": 3.4099999999999997,
+                        "score": 87.68128967285156
+                    },
+                    {
+                        "arpabet": "IH",
+                        "start_time": 3.41,
+                        "end_time": 3.54,
+                        "score": 76.5950698852539
+                    },
+                    {
+                        "arpabet": "SH",
+                        "start_time": 3.54,
+                        "end_time": 3.65,
+                        "score": 99.27388763427734
+                    },
+                    {
+                        "arpabet": "AH",
+                        "start_time": 3.65,
+                        "end_time": 3.75,
+                        "score": 85.67100524902344
+                    },
+                    {
+                        "arpabet": "N",
+                        "start_time": 3.75,
+                        "end_time": 3.93,
+                        "score": 90.47510528564453
+                    }
+                ]
+            }
+        ]
+    }
+}
